@@ -1,0 +1,35 @@
+# SLT: 'slt.role' from templates/_role.tpl
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: lars-server-role
+  labels:
+    app: lars-server
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - endpoints
+  verbs:
+  - get
+  - list
+- apiGroups: 
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+- apiGroups: 
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch

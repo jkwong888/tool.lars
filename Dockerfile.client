@@ -1,0 +1,15 @@
+FROM websphere-liberty:19.0.0.3-kernel
+
+USER default
+# install lars client
+RUN wget -q https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/LARS/larsClient.zip -O /tmp/larsClient.zip \
+    && unzip -d /home/default/larsClient /tmp/larsClient.zip \
+    && rm /tmp/larsClient.zip
+
+COPY populate.sh /home/default/populate.sh
+
+USER root
+RUN chmod 755 /home/default/populate.sh
+
+USER default
+ENTRYPOINT [ "/home/default/populate.sh" ]

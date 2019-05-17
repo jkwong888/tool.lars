@@ -1,0 +1,16 @@
+---
+# SLT: 'slt.role.binding' from templates/_role-binding.tpl
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: lars-server-rolebinding
+  labels:
+    app: lars-server
+subjects:
+- kind: ServiceAccount
+  name: lars-server
+  namespace: lars-server
+roleRef:
+  kind: Role
+  name: lars-server-role
+  apiGroup: rbac.authorization.k8s.io

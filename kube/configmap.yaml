@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lars-config
+data:
+###############################################################################
+#  Liberty Fabric
+###############################################################################
+  include-configmap.xml: |-
+    <server>
+      <include optional="true" location="/etc/wlp/configmap/server.xml"/>
+      <include optional="true" location="/etc/wlp/configmap/cluster-ssl.xml"/>
+    </server>
+
+  server.xml: |-
+    <server>
+      <variable name='mongodb.hostnames' value='mongodb'/>
+      <variable name='mongodb.ports' value='27017'/>
+      <variable name='mongodb.user' value='lars'/>
+      <variable name='mongodb.password' value='lars1'/>
+    </server>
+
+
+
+
