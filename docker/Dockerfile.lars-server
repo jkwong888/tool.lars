@@ -1,4 +1,4 @@
-FROM websphere-liberty:19.0.0.3-kernel
+FROM ibmcom/websphere-liberty:kernel-ubi-min
 
 USER default
 
@@ -12,7 +12,7 @@ RUN /opt/ibm/wlp/bin/installUtility install \
     jndi-1.0
 
 USER root
-RUN wget https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/LARS/larsServerPackage.jar -O /tmp/larsServerPackage.jar \
+RUN curl https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/LARS/larsServerPackage.jar -o /tmp/larsServerPackage.jar \
     && chmod 700 /tmp/larsServerPackage.jar \
     && java -jar /tmp/larsServerPackage.jar /opt/ibm/wlp \
     && mv /opt/ibm/wlp/usr/servers/larsServer/apps/*.war /opt/ibm/wlp/usr/servers/defaultServer/apps

@@ -1,0 +1,6 @@
+FROM ibmcom/websphere-liberty:kernel-ubi-min
+
+USER default
+
+RUN mkdir -p /opt/ibm/wlp/etc
+COPY repositories.properties /opt/ibm/wlp/etc

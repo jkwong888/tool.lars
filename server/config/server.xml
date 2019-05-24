@@ -36,7 +36,8 @@ limitations under the License.
          supported by Liberty
     -->
     <basicRegistry id="defaultRegistry" realm="default">
-        <user name="admin" password="{xor}Lz4Change.Me="/>
+        <user name="admin" password="adminPwd"/>
+        <user name="user" password="passw0rd"/>
         <group name="Administrators">
             <member name="admin"/>
         </group>

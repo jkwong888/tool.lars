@@ -1,0 +1,21 @@
+FROM ibmcom/websphere-liberty:kernel-ubi-min
+
+USER root
+RUN microdnf install unzip
+
+USER default
+
+# install lars client
+RUN curl -q https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/LARS/larsClient.zip -o /tmp/larsClient.zip \
+    && unzip -d /home/default/larsClient /tmp/larsClient.zip \
+    && rm /tmp/larsClient.zip
+
+COPY downloadFeature.sh /home/default/downloadFeature.sh
+COPY uploadFeature.sh /home/default/uploadFeature.sh
+COPY populate.sh /home/default/populate.sh
+
+USER root
+RUN chmod 755 /home/default/*.sh
+
+USER default
+ENTRYPOINT [ "/home/default/populate.sh" ]

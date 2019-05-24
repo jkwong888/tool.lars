@@ -34,6 +34,6 @@ if [ -z "${password}" ]; then
     password="adminPwd"
 fi
 
-installUtility download ${feature} --acceptLicense --verbose --location=/tmp/bundle
-~/larsClient/bin/larsClient upload /tmp/bundle/features/* --url=${larsURL}/ma/v1 --username=${username} --password=${password}
+/home/default/downloadFeature.sh ${feature} /tmp/bundle
+/home/default/uploadFeature.sh /tmp/bundle ${larsURL} ${username} ${password}
 rm -rf /tmp/bundle
